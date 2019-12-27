@@ -1,160 +1,171 @@
 <!DOCTYPE model>
 <Option type="Map">
-  <Option name="children" type="Map">
-    <Option name="native:fixgeometries_1" type="Map">
-      <Option name="active" value="true" type="bool"/>
+  <Option type="Map" name="children">
+    <Option type="Map" name="native:fixgeometries_1">
+      <Option value="true" type="bool" name="active"/>
       <Option name="alg_config"/>
-      <Option name="alg_id" value="native:fixgeometries" type="QString"/>
-      <Option name="component_description" value="Ripara geometrie" type="QString"/>
-      <Option name="component_pos_x" value="415.99999999999994" type="double"/>
-      <Option name="component_pos_y" value="254.40000000000015" type="double"/>
+      <Option value="native:fixgeometries" type="QString" name="alg_id"/>
+      <Option value="Ripara geometrie" type="QString" name="component_description"/>
+      <Option value="415.99999999999994" type="double" name="component_pos_x"/>
+      <Option value="254.40000000000015" type="double" name="component_pos_y"/>
       <Option name="dependencies"/>
-      <Option name="id" value="native:fixgeometries_1" type="QString"/>
+      <Option value="native:fixgeometries_1" type="QString" name="id"/>
       <Option name="outputs"/>
-      <Option name="outputs_collapsed" value="false" type="bool"/>
-      <Option name="parameters_collapsed" value="true" type="bool"/>
-      <Option name="params" type="Map">
-        <Option name="INPUT" type="List">
+      <Option value="false" type="bool" name="outputs_collapsed"/>
+      <Option value="true" type="bool" name="parameters_collapsed"/>
+      <Option type="Map" name="params">
+        <Option type="List" name="INPUT">
           <Option type="Map">
-            <Option name="child_id" value="qgis:snapgeometries_1" type="QString"/>
-            <Option name="output_name" value="OUTPUT" type="QString"/>
-            <Option name="source" value="1" type="int"/>
+            <Option value="qgis:snapgeometries_1" type="QString" name="child_id"/>
+            <Option value="OUTPUT" type="QString" name="output_name"/>
+            <Option value="1" type="int" name="source"/>
           </Option>
         </Option>
       </Option>
     </Option>
-    <Option name="native:union_1" type="Map">
-      <Option name="active" value="true" type="bool"/>
+    <Option type="Map" name="native:union_1">
+      <Option value="true" type="bool" name="active"/>
       <Option name="alg_config"/>
-      <Option name="alg_id" value="native:union" type="QString"/>
-      <Option name="component_description" value="Unione" type="QString"/>
-      <Option name="component_pos_x" value="582.3999999999995" type="double"/>
-      <Option name="component_pos_y" value="378.40000000000003" type="double"/>
+      <Option value="native:union" type="QString" name="alg_id"/>
+      <Option value="Unione" type="QString" name="component_description"/>
+      <Option value="582.3999999999995" type="double" name="component_pos_x"/>
+      <Option value="378.40000000000003" type="double" name="component_pos_y"/>
       <Option name="dependencies"/>
-      <Option name="id" value="native:union_1" type="QString"/>
+      <Option value="native:union_1" type="QString" name="id"/>
       <Option name="outputs"/>
-      <Option name="outputs_collapsed" value="false" type="bool"/>
-      <Option name="parameters_collapsed" value="true" type="bool"/>
-      <Option name="params" type="Map">
-        <Option name="INPUT" type="List">
+      <Option value="false" type="bool" name="outputs_collapsed"/>
+      <Option value="true" type="bool" name="parameters_collapsed"/>
+      <Option type="Map" name="params">
+        <Option type="List" name="INPUT">
           <Option type="Map">
-            <Option name="child_id" value="native:fixgeometries_1" type="QString"/>
-            <Option name="output_name" value="OUTPUT" type="QString"/>
-            <Option name="source" value="1" type="int"/>
+            <Option value="native:fixgeometries_1" type="QString" name="child_id"/>
+            <Option value="OUTPUT" type="QString" name="output_name"/>
+            <Option value="1" type="int" name="source"/>
           </Option>
         </Option>
-        <Option name="OVERLAY" type="List">
+        <Option type="List" name="OVERLAY">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" type="invalid"/>
+            <Option value="2" type="int" name="source"/>
+            <Option type="invalid" name="static_value"/>
           </Option>
         </Option>
-        <Option name="OVERLAY_FIELDS_PREFIX" type="List">
+        <Option type="List" name="OVERLAY_FIELDS_PREFIX">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="" type="QString"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="" type="QString" name="static_value"/>
           </Option>
         </Option>
       </Option>
     </Option>
-    <Option name="qgis:executesql_1" type="Map">
-      <Option name="active" value="true" type="bool"/>
+    <Option type="Map" name="qgis:executesql_1">
+      <Option value="true" type="bool" name="active"/>
       <Option name="alg_config"/>
-      <Option name="alg_id" value="qgis:executesql" type="QString"/>
-      <Option name="component_description" value="Esegui SQL" type="QString"/>
-      <Option name="component_pos_x" value="714.3999999999994" type="double"/>
-      <Option name="component_pos_y" value="480" type="double"/>
+      <Option value="qgis:executesql" type="QString" name="alg_id"/>
+      <Option value="Esegui SQL" type="QString" name="component_description"/>
+      <Option value="714.3999999999994" type="double" name="component_pos_x"/>
+      <Option value="480" type="double" name="component_pos_y"/>
       <Option name="dependencies"/>
-      <Option name="id" value="qgis:executesql_1" type="QString"/>
-      <Option name="outputs" type="Map">
-        <Option name="output" type="Map">
-          <Option name="child_id" value="qgis:executesql_1" type="QString"/>
-          <Option name="component_description" value="output" type="QString"/>
-          <Option name="component_pos_x" value="914.3999999999994" type="double"/>
-          <Option name="component_pos_y" value="525" type="double"/>
-          <Option name="default_value" type="invalid"/>
-          <Option name="mandatory" value="false" type="bool"/>
-          <Option name="name" value="output" type="QString"/>
-          <Option name="output_name" value="OUTPUT" type="QString"/>
+      <Option value="qgis:executesql_1" type="QString" name="id"/>
+      <Option type="Map" name="outputs">
+        <Option type="Map" name="output">
+          <Option value="qgis:executesql_1" type="QString" name="child_id"/>
+          <Option value="output" type="QString" name="component_description"/>
+          <Option value="914.3999999999994" type="double" name="component_pos_x"/>
+          <Option value="525" type="double" name="component_pos_y"/>
+          <Option type="invalid" name="default_value"/>
+          <Option value="false" type="bool" name="mandatory"/>
+          <Option value="output" type="QString" name="name"/>
+          <Option value="OUTPUT" type="QString" name="output_name"/>
         </Option>
       </Option>
-      <Option name="outputs_collapsed" value="true" type="bool"/>
-      <Option name="parameters_collapsed" value="true" type="bool"/>
-      <Option name="params" type="Map">
-        <Option name="INPUT_DATASOURCES" type="List">
+      <Option value="true" type="bool" name="outputs_collapsed"/>
+      <Option value="true" type="bool" name="parameters_collapsed"/>
+      <Option type="Map" name="params">
+        <Option type="List" name="INPUT_DATASOURCES">
           <Option type="Map">
-            <Option name="child_id" value="native:union_1" type="QString"/>
-            <Option name="output_name" value="OUTPUT" type="QString"/>
-            <Option name="source" value="1" type="int"/>
+            <Option value="native:union_1" type="QString" name="child_id"/>
+            <Option value="OUTPUT" type="QString" name="output_name"/>
+            <Option value="1" type="int" name="source"/>
           </Option>
         </Option>
-        <Option name="INPUT_GEOMETRY_CRS" type="List">
+        <Option type="List" name="INPUT_GEOMETRY_CRS">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="ProjectCrs" type="QString"/>
+            <Option value="2" type="int" name="source"/>
+            <Option type="QgsCoordinateReferenceSystem" name="static_value">
+              <spatialrefsys>
+                <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+                <srsid>3452</srsid>
+                <srid>4326</srid>
+                <authid>EPSG:4326</authid>
+                <description>WGS 84</description>
+                <projectionacronym>longlat</projectionacronym>
+                <ellipsoidacronym>WGS84</ellipsoidacronym>
+                <geographicflag>true</geographicflag>
+              </spatialrefsys>
+            </Option>
           </Option>
         </Option>
-        <Option name="INPUT_GEOMETRY_FIELD" type="List">
+        <Option type="List" name="INPUT_GEOMETRY_FIELD">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="geometry" type="QString"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="geometry" type="QString" name="static_value"/>
           </Option>
         </Option>
-        <Option name="INPUT_GEOMETRY_TYPE" type="List">
+        <Option type="List" name="INPUT_GEOMETRY_TYPE">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="4" type="int"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="4" type="int" name="static_value"/>
           </Option>
         </Option>
-        <Option name="INPUT_QUERY" type="List">
+        <Option type="List" name="INPUT_QUERY">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="SELECT group_concat (&quot;id&quot;) AS ID, st_union (geometry) AS geometry&#xa;FROM input1&#xa;GROUP BY geometry" type="QString"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="SELECT group_concat (&quot;id&quot;) AS ID, st_union (geometry) AS geometry&#xa;FROM input1&#xa;GROUP BY geometry" type="QString" name="static_value"/>
           </Option>
         </Option>
-        <Option name="INPUT_UID_FIELD" type="List">
+        <Option type="List" name="INPUT_UID_FIELD">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="id" type="QString"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="id" type="QString" name="static_value"/>
           </Option>
         </Option>
       </Option>
     </Option>
-    <Option name="qgis:snapgeometries_1" type="Map">
-      <Option name="active" value="true" type="bool"/>
+    <Option type="Map" name="qgis:snapgeometries_1">
+      <Option value="true" type="bool" name="active"/>
       <Option name="alg_config"/>
-      <Option name="alg_id" value="qgis:snapgeometries" type="QString"/>
-      <Option name="component_description" value="Aggancia geometrie al vettore" type="QString"/>
-      <Option name="component_pos_x" value="226.39999999999992" type="double"/>
-      <Option name="component_pos_y" value="141.60000000000014" type="double"/>
+      <Option value="qgis:snapgeometries" type="QString" name="alg_id"/>
+      <Option value="Aggancia geometrie al vettore" type="QString" name="component_description"/>
+      <Option value="226.39999999999992" type="double" name="component_pos_x"/>
+      <Option value="141.60000000000014" type="double" name="component_pos_y"/>
       <Option name="dependencies"/>
-      <Option name="id" value="qgis:snapgeometries_1" type="QString"/>
+      <Option value="qgis:snapgeometries_1" type="QString" name="id"/>
       <Option name="outputs"/>
-      <Option name="outputs_collapsed" value="false" type="bool"/>
-      <Option name="parameters_collapsed" value="true" type="bool"/>
-      <Option name="params" type="Map">
-        <Option name="BEHAVIOR" type="List">
+      <Option value="false" type="bool" name="outputs_collapsed"/>
+      <Option value="true" type="bool" name="parameters_collapsed"/>
+      <Option type="Map" name="params">
+        <Option type="List" name="BEHAVIOR">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="7" type="int"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="7" type="int" name="static_value"/>
           </Option>
         </Option>
-        <Option name="INPUT" type="List">
+        <Option type="List" name="INPUT">
           <Option type="Map">
-            <Option name="parameter_name" value="poly" type="QString"/>
-            <Option name="source" value="0" type="int"/>
+            <Option value="poly" type="QString" name="parameter_name"/>
+            <Option value="0" type="int" name="source"/>
           </Option>
         </Option>
-        <Option name="REFERENCE_LAYER" type="List">
+        <Option type="List" name="REFERENCE_LAYER">
           <Option type="Map">
-            <Option name="parameter_name" value="poly" type="QString"/>
-            <Option name="source" value="0" type="int"/>
+            <Option value="poly" type="QString" name="parameter_name"/>
+            <Option value="0" type="int" name="source"/>
           </Option>
         </Option>
-        <Option name="TOLERANCE" type="List">
+        <Option type="List" name="TOLERANCE">
           <Option type="Map">
-            <Option name="source" value="2" type="int"/>
-            <Option name="static_value" value="1e-08" type="double"/>
+            <Option value="2" type="int" name="source"/>
+            <Option value="1e-08" type="double" name="static_value"/>
           </Option>
         </Option>
       </Option>
@@ -162,38 +173,38 @@
   </Option>
   <Option name="help"/>
   <Option name="modelVariables"/>
-  <Option name="model_group" value="toto" type="QString"/>
-  <Option name="model_name" value="OverlayUnion" type="QString"/>
-  <Option name="parameterDefinitions" type="Map">
-    <Option name="poly" type="Map">
-      <Option name="data_types" type="List">
+  <Option value="toto" type="QString" name="model_group"/>
+  <Option value="OverlayUnion" type="QString" name="model_name"/>
+  <Option type="Map" name="parameterDefinitions">
+    <Option type="Map" name="poly">
+      <Option type="List" name="data_types">
         <Option value="2" type="int"/>
       </Option>
-      <Option name="default" type="invalid"/>
-      <Option name="description" value="layerPolygon" type="QString"/>
-      <Option name="flags" value="0" type="int"/>
+      <Option type="invalid" name="default"/>
+      <Option value="layerPolygon" type="QString" name="description"/>
+      <Option value="0" type="int" name="flags"/>
       <Option name="metadata"/>
-      <Option name="name" value="poly" type="QString"/>
-      <Option name="parameter_type" value="vector" type="QString"/>
+      <Option value="poly" type="QString" name="name"/>
+      <Option value="vector" type="QString" name="parameter_type"/>
     </Option>
-    <Option name="qgis:executesql_1:output" type="Map">
-      <Option name="create_by_default" value="true" type="bool"/>
-      <Option name="data_type" value="-1" type="int"/>
-      <Option name="default" type="invalid"/>
-      <Option name="description" value="output" type="QString"/>
-      <Option name="flags" value="0" type="int"/>
+    <Option type="Map" name="qgis:executesql_1:output">
+      <Option value="true" type="bool" name="create_by_default"/>
+      <Option value="-1" type="int" name="data_type"/>
+      <Option type="invalid" name="default"/>
+      <Option value="output" type="QString" name="description"/>
+      <Option value="0" type="int" name="flags"/>
       <Option name="metadata"/>
-      <Option name="name" value="qgis:executesql_1:output" type="QString"/>
-      <Option name="parameter_type" value="sink" type="QString"/>
-      <Option name="supports_non_file_outputs" value="true" type="bool"/>
+      <Option value="qgis:executesql_1:output" type="QString" name="name"/>
+      <Option value="sink" type="QString" name="parameter_type"/>
+      <Option value="true" type="bool" name="supports_non_file_outputs"/>
     </Option>
   </Option>
-  <Option name="parameters" type="Map">
-    <Option name="poly" type="Map">
-      <Option name="component_description" value="poly" type="QString"/>
-      <Option name="component_pos_x" value="120" type="double"/>
-      <Option name="component_pos_y" value="60" type="double"/>
-      <Option name="name" value="poly" type="QString"/>
+  <Option type="Map" name="parameters">
+    <Option type="Map" name="poly">
+      <Option value="poly" type="QString" name="component_description"/>
+      <Option value="120" type="double" name="component_pos_x"/>
+      <Option value="60" type="double" name="component_pos_y"/>
+      <Option value="poly" type="QString" name="name"/>
     </Option>
   </Option>
 </Option>
