@@ -23,7 +23,7 @@ SELECT DropGeoTable( "OUTPUT");
 CREATE TABLE OUTPUT AS
 SELECT Group_Concat(id) as id, e.geom
 FROM inputLayer p, elementi e
-where st_intersects (ST_PointOnSurface(e.geom), p.geom) = 1
+where st_intersects (ST_PointOnSurface(e.geom), p.geometry) = 1
 GROUP BY e.geom;
 SELECT RecoverGeometryColumn('OUTPUT','geom',4326,'POLYGON','XY');
 
