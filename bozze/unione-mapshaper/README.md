@@ -1,6 +1,6 @@
-- [&quot;Unire&quot; i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper](#quotunirequot-i-poligoni-di-un-layer-con-grande-semplicit%c3%a0-%c3%a8-un-lavoro-soltanto-per-mapshaper)
+- [&quot;Unire&quot; i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper](#quotunirequot-i-poligoni-di-un-layer-con-grande-semplicità-è-un-lavoro-soltanto-per-mapshaper)
   - [Fare l'unione dei poligoni di un layer con mapshaper](#fare-lunione-dei-poligoni-di-un-layer-con-mapshaper)
-- [Altre modalità](#altre-modalit%c3%a0)
+- [Altre modalità](#altre-modalità)
   - [GeoPandas](#geopandas)
   - [QGIS](#qgis)
   - [SQL](#sql)
@@ -50,6 +50,18 @@ Nell'immagine di sotto è rappresentato il processo. Si veda ad esempio come al 
 
 ![](imgs/union.png)
 
+In termini di geometri quindi 7 record di output con questi attributi.
+
+| output |
+| --- |
+| A,B,C |
+| B,C |
+| A,C |
+| C |
+| A |
+| A,B |
+| B |
+
 Tantissimi i campi di applicazione di un processo come questo. I tre poligoni di questo esempio potrebbero essere gli areali "impattati" dalla diffusione di inquinanti da tra punti sorgente, oppure le aree che distano una determinata distanza da una fontanella d'acqua potabile, ecc..<br>
 L'unione, con intersezione geometrica e aggregazione di attributi, consente di produrre un *output* in cui è possibile leggere per ogni area il cotributo di tutti i poligoni di `input`.
 
@@ -70,28 +82,14 @@ A seguito di [una *issue*](https://github.com/geopandas/geopandas/issues/1116) i
 
 ## QGIS
 
-A partire dalla versione [QGIS 3.2 Bonn](https://qgis.org/it/site/forusers/visualchangelog32/) è disponibile un geoalgoritmo `Unione con un singolo strato` che svolge (quasi tutto) il compito descritto sopra, unica cosa che non fa (ma è stata una scelta dello sviluppatore e non un bug) è quella di raggruppare le geometrie e di conseguenza gli attributi.
+A partire dalla versione [QGIS 3.2 Bonn](https://qgis.org/it/site/forusers/visualchangelog32/) è disponibile un geoalgoritmo `Union` che svolge la parte geometrica di ritaglio del processo descritto sopra, ma non raggruppa le geometrie omologhe e di conseguenza gli attributi.<br>
+Una singola area condivisa tra `n` poligoni sarà ritagliata e produrrà in *output* `n` elementi geometrici. Nell'immagine di sotto ad esempio, in corrispondenza dell'area selezionata in giallo, tre *record* e tre geometrie; complessivamente così verranno quindi prodotti 12 *record*.
 
-Quindi l'`output` è di questo tipo:
+![](imgs/unionQGIS.png)
 
-id|geom
---|----
-A |geomA
-A |geomAB
-A |geomAC
-A |geomABC
-B |geomB
-B |geomBA
-B |geomBC
-B |geomBAC
-C |geomC
-C |geomCA
-C |geomCB
-C |geomCAB
+Per raggruppare le geometrie e gli attributi occorre un altro passaggio, oppure creare un modello grafico, come quello che trovate [qui](./overlayUnion.model3); in questo si utilizzano anche lo *snapping* e la riparazione delle geometrie, che servono in casi molto più complessi di quello attuale.
 
-Per raggruppare le geometrie e gli attributi occorre un altro passaggio oppure creare un modello grafico che trovate [qui](overlayUnion.model3); nel modello si utilizza lo snapping e la riparazione delle geometrie, servono in casi molto più complessi di quello attuale.
-
-**NOTE**: in casi semplici (come quello di questo esempio) non occorre usare lo snap e riparare le geometrie come descritto nel modello di sopra; la query utilizzata è la seguente:
+La *query* utilizzata nel modello è la seguente:
 
 ```sql
 SELECT group_concat ("id") AS ID, st_union (geometry) AS geometry
@@ -99,24 +97,11 @@ FROM input1
 GROUP BY geometry
 ```
 
-**PS**: la tabella `input1` rappresnte l'output dell'algoritmo Unione.
-
-quindi la tabella di `output`:
-
-id|geom
---|----
-A |geomA
-B |geomB
-B,A |geomBA
-C |geomC
-C,A |geomCA
-C,B |geomCB
-A,B,C |geomABC
-
+Fatto il raggruppamento si avranno in *output* ancora una volta 7 record.
 
 ## SQL
 
-Non esisite una funzione **SQL** (dialect SQLite) che risolta facilmente il quesito, occorre metterci un po' di testa ed usare il metodo `Borruso`, cioè occorre analizzare step by step cosa occorre fare per raggiungere l'obiettivo, quindi occorre:
+Non esisite una funzione di **SQL** spaziale (SpatiaLite o PostGIS) che risolva facilmente il quesito; occorre metterci un po' di testa e analizzare *step by step* il da farsi:
 
 1. estrarre i perimetri dai poligoni di input;
 2. estrarre i punti di intersezione dei perimetri delle varie feature;
@@ -125,26 +110,50 @@ Non esisite una funzione **SQL** (dialect SQLite) che risolta facilmente il ques
 5. poligonalizzare a partire dai perimetri splittati;
 6. associare gli attributi alle varie geometrie poligonalizzate.
 
-per importare il file `inputLayer` e creare db spatialite
+Ad esempio in ambiente SpatiaLite si potrebbe partire con l'importazione del file di esempio:
 
 ```bash
 # importa file inputLayer e crea file spatialite
 ogr2ogr -append -t_srs EPSG:4326 -f SQLite ./dbOverlayUnion.sqlite ./inputLayer.geojson -nln "inputLayer" -dsco SPATIALITE=YES
 ```
 
-[qui scriptSQL](overlayUnion.sql)
+E infine lanciare la seguente *query*:
 
-quindi la tabella di `output`:
+```sql
+-- algoritmo proiezioni, the SpatiaLite way
+-- di Salvatore Fiandaca
+-- e-mail: pigrecoinfinito@gmail.com
+-- è stato di aiuto: http://blog.cleverelephant.ca/2019/07/postgis-overlays.html
 
-id|geom
---|----
-A |geomA
-B |geomB
-B,A |geomBA
-C |geomC
-C,A |geomCA
-C,B |geomCB
-A,B,C |geomABC
+-- crea geotabella polygonize
+CREATE TABLE polygonize AS
+SELECT St_Polygonize(t.geom) as geom
+FROM
+(
+SELECT id, St_Union(st_boundary(geometry)) as geom
+FROM inputLayer) t;
+SELECT RecoverGeometryColumn('polygonize','geom',4326,'MULTIPOLYGON','XY');
+
+-- crea geotabella dalle componenti elementari della geotabella polygonize
+SELECT DropGeoTable('elementi');
+SELECT ElementaryGeometries( 'elementi' ,'geom' , 'polygonize' ,'out_pk' , 'out_multi_id', 1 ) as num, 'polygon splitted' as label;
+
+-- crea poligoni di output con attributi
+SELECT DropGeoTable( "OUTPUT");
+CREATE TABLE OUTPUT AS
+SELECT Group_Concat(id) as id, e.geom
+FROM inputLayer p, elementi e
+where st_intersects (ST_PointOnSurface(e.geom), p.geometry) = 1
+GROUP BY e.geom;
+SELECT RecoverGeometryColumn('OUTPUT','geom',4326,'POLYGON','XY');
+
+-- aggiorna statistiche e VACUUM
+UPDATE geometry_columns_statistics set last_verified = 0;
+SELECT UpdateLayerStatistics('geometry_table_name');
+VACUUM;
+```
+
+In *output* ancora una volta 7 record.
 
 # Per concludere
 

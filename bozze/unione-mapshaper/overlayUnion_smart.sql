@@ -1,5 +1,4 @@
---
--- algoritmo proiezioni, the Spatialite way
+-- algoritmo proiezioni, the SpatiaLite way
 -- di Salvatore Fiandaca
 -- e-mail: pigrecoinfinito@gmail.com
 -- è stato di aiuto: http://blog.cleverelephant.ca/2019/07/postgis-overlays.html
@@ -15,8 +14,7 @@ SELECT RecoverGeometryColumn('polygonize','geom',4326,'MULTIPOLYGON','XY');
 
 -- crea geotabella dalle componenti elementari della geotabella polygonize
 SELECT DropGeoTable('elementi');
-SELECT ElementaryGeometries( 'elementi' ,
-                             'geom' , 'polygonize' ,'out_pk' , 'out_multi_id', 1 ) as num, 'polygon splitted' as label;
+SELECT ElementaryGeometries( 'elementi' ,'geom' , 'polygonize' ,'out_pk' , 'out_multi_id', 1 ) as num, 'polygon splitted' as label;
 
 -- crea poligoni di output con attributi
 SELECT DropGeoTable( "OUTPUT");
@@ -27,9 +25,7 @@ where st_intersects (ST_PointOnSurface(e.geom), p.geometry) = 1
 GROUP BY e.geom;
 SELECT RecoverGeometryColumn('OUTPUT','geom',4326,'POLYGON','XY');
 
---
 -- aggiorna statistiche e VACUUM
---
 UPDATE geometry_columns_statistics set last_verified = 0;
 SELECT UpdateLayerStatistics('geometry_table_name');
 VACUUM;
