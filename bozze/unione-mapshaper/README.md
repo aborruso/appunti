@@ -8,7 +8,6 @@
 
 # "Unire" i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper
 
-
 Quando si lavora con dati spaziali alle volte si ha come obiettivo quello di creare nuove geometrie in base a come si sovrappongono. Queste procedure sono spesso indicate usando il **linguaggio** degli **insiemi**: intersezioni, **unioni** e differenze.
 
 Qui sotto un'immagine con alcune delle operazioni "classiche" (questa immagine e il testo introduttivo dalla [guida](http://geopandas.org/set_operations.html) di GeoPandas).
@@ -21,6 +20,8 @@ In questo articolo verrà descritta una di queste e in particolare l'**unione**.
 - produrre in *output* non soltanto l'unione delle geometrie, ma **unire anche gli attributi** in base alla sovrapposizione degli oggetti.
 
 Nell'immagine di sotto un esempio: a sinistra le geometrie di *input* e a destra l'output. I perimetri delle aree fanno da "lama" di ritaglio e laddove le aree si sovrappongono devono essere trasferiti gli attributi di input (in questo esempio i valori `A`, `B` e `C`).
+
+A [**Totò Fiandaca**](https://pigrecoinfinito.com/) (grazie mille) si deve la redazione del testo che descrive come fare la cosa con [QGIS](https://qgis.org) e tramite SQL geografico (in particolare con [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index)).
 
 ![](imgs/goal.png)
 
