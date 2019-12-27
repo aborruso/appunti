@@ -101,7 +101,7 @@ Fatto il raggruppamento si avranno in *output* ancora una volta 7 record.
 
 ## SQL
 
-Non esisite una funzione di **SQL** spaziale (SpatiaLite o PostGIS) che risolva facilmente il quesito; occorre metterci un po' di testa e analizzare *step by step* il da farsi:
+Non esisite una funzione di **SQL** spaziale (SpatiaLite o PostGIS) che risolva facilmente il quesito; occorre analizzare *step by step* il da farsi:
 
 1. estrarre i perimetri dai poligoni di input;
 2. estrarre i punti di intersezione dei perimetri delle varie feature;
