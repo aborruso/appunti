@@ -16,7 +16,7 @@ SELECT RecoverGeometryColumn('polygonize','geom',4326,'MULTIPOLYGON','XY');
 -- crea geotabella dalle componenti elementari della geotabella polygonize
 SELECT DropGeoTable('elementi');
 SELECT ElementaryGeometries( 'elementi' ,
-                             'geom' , 'polygonize' ,'out_pk' , 'out_multi_id', 1 ) as num, 'lines splitted' as label;
+                             'geom' , 'polygonize' ,'out_pk' , 'out_multi_id', 1 ) as num, 'polygon splitted' as label;
 
 -- crea poligoni di output con attributi
 SELECT DropGeoTable( "OUTPUT");
