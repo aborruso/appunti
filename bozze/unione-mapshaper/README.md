@@ -53,15 +53,7 @@ Nell'immagine di sotto è rappresentato il processo. Si veda ad esempio come al 
 
 In termini di geometrie si avranno 7 record di *output* (corrispondenti alle 7 interesezioni geometriche possibili) con questi attributi:
 
-| output |
-| --- |
-| A,B,C |
-| B,C |
-| A,C |
-| C |
-| A |
-| A,B |
-| B |
+![](imgs/output.png)
 
 Tantissimi i campi di applicazione di un processo come questo. Questi tre poligoni potrebbero essere gli areali "colpiti" dalla diffusione di inquinanti da tre punti sorgente, oppure le aree che distano una determinata distanza da una fontanella d'acqua potabile, ecc..<br>
 L'unione, con intersezione geometrica e aggregazione di attributi, consente di produrre un *output* in cui è possibile leggere per ogni area il cotributo di tutti i poligoni di `input`.
