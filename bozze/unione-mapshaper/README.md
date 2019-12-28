@@ -1,5 +1,5 @@
 - [&quot;Unire&quot; i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper](#quotunirequot-i-poligoni-di-un-layer-con-grande-semplicità-è-un-lavoro-soltanto-per-mapshaper)
-  - [Uunione dei poligoni di un layer con mapshaper](#uunione-dei-poligoni-di-un-layer-con-mapshaper)
+  - [Unione dei poligoni di un layer con mapshaper](#unione-dei-poligoni-di-un-layer-con-mapshaper)
 - [Altre modalità](#altre-modalità)
   - [GeoPandas](#geopandas)
   - [QGIS](#qgis)
@@ -28,7 +28,7 @@ Un'applicazione con cui è molto semplice realizzare quanto descritto è il fant
 
 A [**Totò Fiandaca**](https://pigrecoinfinito.com/) (grazie mille) si deve la redazione del testo che descrive come fare la cosa con [QGIS](https://qgis.org) e tramite SQL geografico (in particolare con [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index)).
 
-## Uunione dei poligoni di un layer con mapshaper
+## Unione dei poligoni di un layer con mapshaper
 
 Una volta [installato](https://github.com/mbloch/mapshaper#installation) è utilizzabile o a riga di comando o tramite un'interfaccia web ([questa](https://mapshaper.org/) la versione pubblica ufficiale).
 
@@ -94,7 +94,7 @@ Fatto il raggruppamento si avranno in *output* ancora una volta 7 record.
 
 ## SQL
 
-Non esisite una funzione di **SQL** spaziale (SpatiaLite o PostGIS) che risolva facilmente il quesito; occorre analizzare *step by step* il da farsi:
+Non esiste una funzione di **SQL** spaziale (SpatiaLite o PostGIS) che risolva facilmente la cosa; occorre analizzare *step by step* il da farsi:
 
 1. estrarre i perimetri dai poligoni di input;
 2. estrarre i punti di intersezione dei perimetri delle varie feature;
@@ -150,7 +150,7 @@ In *output* ancora una volta 7 record.
 
 # Per concludere
 
-L'autore di mapshaper è [**Matthew Bloch**](https://github.com/mbloch). È uno sviluppatore con doti al di fuore del comune, sia in termini professionali, che in termini di attitudine all'ascolto e allo scambio con gli altri.<br>
+L'autore di mapshaper è [**Matthew Bloch**](https://github.com/mbloch). È uno sviluppatore con doti al di fuori del comune, sia in termini professionali, che in termini di attitudine all'ascolto e allo scambio con gli altri.<br>
 Questa modalità così semplice per eseguire questo processo di unione è stata introdotta da poco ([il 18 novembre 2019](https://github.com/mbloch/mapshaper/releases/tag/v0.4.141)), grazie a una [richiesta ricevuta](https://github.com/mbloch/mapshaper/issues/353) nel *repository* del progetto (da notare che anche precedentemente fosse semplice realizzare la cosa).
 
 Non vi resta che installare mapshaper e apprezzarne le grandi potenzialità.
