@@ -122,8 +122,7 @@ E infine lanciare la seguente *query*:
 CREATE TABLE polygonize AS
 SELECT St_Polygonize(t.geom) as geom
 FROM
-(
-SELECT id, St_Union(st_boundary(geometry)) as geom
+(SELECT id, St_Union(st_boundary(geometry)) as geom
 FROM inputLayer) t;
 SELECT RecoverGeometryColumn('polygonize','geom',4326,'MULTIPOLYGON','XY');
 
