@@ -1,5 +1,5 @@
 - [&quot;Unire&quot; i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper](#quotunirequot-i-poligoni-di-un-layer-con-grande-semplicità-è-un-lavoro-soltanto-per-mapshaper)
-  - [Fare l'unione dei poligoni di un layer con mapshaper](#fare-lunione-dei-poligoni-di-un-layer-con-mapshaper)
+  - [Uunione dei poligoni di un layer con mapshaper](#uunione-dei-poligoni-di-un-layer-con-mapshaper)
 - [Altre modalità](#altre-modalità)
   - [GeoPandas](#geopandas)
   - [QGIS](#qgis)
@@ -8,27 +8,27 @@
 
 # "Unire" i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper
 
-Quando si lavora con dati spaziali alle volte si ha come obiettivo quello di creare nuove geometrie in base a come si sovrappongono. Queste procedure sono spesso indicate usando il **linguaggio** degli **insiemi**: intersezioni, **unioni** e differenze.
+Quando si lavora con dati spaziali uno degli obiettivi può essere quello di creare nuove geometrie in base a come si sovrappongono fra loro. Queste procedure sono spesso indicate usando il **linguaggio** degli **insiemi**: intersezione, **unione** e differenza.
 
-Qui sotto un'immagine con alcune delle operazioni "classiche" (questa immagine e il testo introduttivo dalla [guida](http://geopandas.org/set_operations.html) di GeoPandas).
+Qui sotto un'immagine con alcune delle operazioni "classiche" (questa e il testo introduttivo dalla [guida](http://geopandas.org/set_operations.html) di GeoPandas).
 
 ![](imgs/overlay_operations.png)
 
 In questo articolo verrà descritta una di queste e in particolare l'**unione**. È un'operazione realizzabile in diverse modalità e con diversi strumenti, ma diventa abbastanza complessa e/o non realizzabile se l'obiettivo è:
 
 - realizzare l'unione tra oggetti di **uno stesso *layer* di input**;
-- produrre in *output* non soltanto l'unione delle geometrie, ma **unire anche gli attributi** in base alla sovrapposizione degli oggetti.
+- produrre in *output* non soltanto l'**unione** delle geometrie, ma anche quella degli **attributi**, sempre in base alla sovrapposizione delle geometrie.
 
 Nell'immagine di sotto un esempio: a sinistra le geometrie di *input* e a destra l'output. I perimetri delle aree fanno da "lama" di ritaglio e laddove le aree si sovrappongono devono essere trasferiti gli attributi di input (in questo esempio i valori `A`, `B` e `C`).
-
-A [**Totò Fiandaca**](https://pigrecoinfinito.com/) (grazie mille) si deve la redazione del testo che descrive come fare la cosa con [QGIS](https://qgis.org) e tramite SQL geografico (in particolare con [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index)).
 
 ![](imgs/goal.png)
 
 Un'applicazione con cui è molto semplice realizzare quanto descritto è il fantastico [**mapshaper**](https://github.com/mbloch/mapshaper). È uno  strumento scritto in JavaScript, per modificare file Shapefile, GeoJSON, TopoJSON, CSV e altri formati, molto noto per le sue eccellenti doti nella semplificazione di geometrie.<br>
 È uno strumento che fa molto molto di più e questo articolo è l'occasione per mostrarne una.
 
-## Fare l'unione dei poligoni di un layer con mapshaper
+A [**Totò Fiandaca**](https://pigrecoinfinito.com/) (grazie mille) si deve la redazione del testo che descrive come fare la cosa con [QGIS](https://qgis.org) e tramite SQL geografico (in particolare con [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index)).
+
+## Uunione dei poligoni di un layer con mapshaper
 
 Una volta [installato](https://github.com/mbloch/mapshaper#installation) è utilizzabile o a riga di comando o tramite un'interfaccia web ([questa](https://mapshaper.org/) la versione pubblica ufficiale).
 
@@ -43,7 +43,7 @@ mapshaper -i ./inputLayer.geojson -mosaic calc='output=collect(id).toString()' -
 Per punti:
 
 - con `-i` si imposta il file di *input*;
-- poi si imposta il comando da eseguire - [`-mosaic`](https://github.com/mbloch/mapshaper/wiki/Command-Reference#-mosaic) - che in questo caso è appunto l'unione dei poligoni;
+- poi il comando da eseguire - [`-mosaic`](https://github.com/mbloch/mapshaper/wiki/Command-Reference#-mosaic) - che in questo caso è appunto l'unione dei poligoni;
 - al comando `mosaic` si associa l'opzione [`calc`](https://github.com/mbloch/mapshaper/wiki/Command-Reference#-calc), che consente di eseguire calcoli nelle aggregazioni molti-a-uno, utilizzando espressioni JavaScript. In questo caso viene generato un nuovo campo denominato `output`, in cui vengono aggregati i valori del campo `id` nei poligoni di intersezione risultanti;
 - infine si definisce con `-o` il file di output.
 
@@ -51,7 +51,7 @@ Nell'immagine di sotto è rappresentato il processo. Si veda ad esempio come al 
 
 ![](imgs/union.png)
 
-In termini di geometri quindi 7 record di output con questi attributi.
+In termini di geometrie si avranno 7 record di *output* (corrispondenti alle 7 interesezioni geometriche possibili) con questi attributi:
 
 | output |
 | --- |
@@ -63,7 +63,7 @@ In termini di geometri quindi 7 record di output con questi attributi.
 | A,B |
 | B |
 
-Tantissimi i campi di applicazione di un processo come questo. I tre poligoni di questo esempio potrebbero essere gli areali "impattati" dalla diffusione di inquinanti da tra punti sorgente, oppure le aree che distano una determinata distanza da una fontanella d'acqua potabile, ecc..<br>
+Tantissimi i campi di applicazione di un processo come questo. Questi tre poligoni potrebbero essere gli areali "colpiti" dalla diffusione di inquinanti da tre punti sorgente, oppure le aree che distano una determinata distanza da una fontanella d'acqua potabile, ecc..<br>
 L'unione, con intersezione geometrica e aggregazione di attributi, consente di produrre un *output* in cui è possibile leggere per ogni area il cotributo di tutti i poligoni di `input`.
 
 # Altre modalità
@@ -159,7 +159,8 @@ In *output* ancora una volta 7 record.
 # Per concludere
 
 L'autore di mapshaper è [**Matthew Bloch**](https://github.com/mbloch). È uno sviluppatore con doti al di fuore del comune, sia in termini professionali, che in termini di attitudine all'ascolto e allo scambio con gli altri.<br>
-Questa modalità così semplice per eseguire questo processo di unione è stata introdotta da poco ([il 18 novembre 2019](https://github.com/mbloch/mapshaper/releases/tag/v0.4.141)), grazie a una [richiesta ricevuta](https://github.com/mbloch/mapshaper/issues/353) nel *repository* del progetto.
+Questa modalità così semplice per eseguire questo processo di unione è stata introdotta da poco ([il 18 novembre 2019](https://github.com/mbloch/mapshaper/releases/tag/v0.4.141)), grazie a una [richiesta ricevuta](https://github.com/mbloch/mapshaper/issues/353) nel *repository* del progetto (da notare che anche precedentemente fosse semplice realizzare la cosa).
+
+Non vi resta che installare mapshaper e apprezzarne le grandi potenzialità.
 
 Un **grande grazie** a **Matthew** per quello che realizza e mette a disposizione e per il modo in cui lo fa!
-
