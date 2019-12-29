@@ -22,7 +22,7 @@ L'obiettivo è quindi ottenere qualcosa come quella di sotto (le `n` pagine corr
 ## Come creare l'atlante
 
 Il punto di partenza è quello di caricare i layer cartografici di base. Nell'esempio creato per descrivere la procedura faccio uso soltanto di un [file CSV](./atlante/decilesNE.csv) (denominato `decilesNE.csv`), con una struttura come quella dell'immagine soprastante, più due colonne con le coordinate.<br>
-Una volta aggiunto formatto il layer sfruttando i valori di una delle colonne `year...`, che contengono valori da `0` a `9`. <br>
+Una volta aggiunto, formatto il layer sfruttando i valori di una delle colonne `year...`, che contengono valori da `0` a `9`. <br>
 Sono **dieci classi** a cui associo dei toni dal bianco al blu, al passaggio da `0` a `9`. Si tratta di punti che rappresentano un quadrato di 5 chilometri e gli assocerò pertanto un simbolo quadrato di 5 km di lato.
 
 ![](imgs/qgis-atlas-color-settings.png)
