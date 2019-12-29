@@ -30,7 +30,7 @@ Sono **dieci classi** a cui associo dei toni dal bianco al blu, al passaggio da 
 Per poter **paginare per anno** devo avere un layer con i valori **distinti per anno**, ma **disposti in righe**. Basta quindi trasporre la riga con il nome delle colonne del file di input e ottenere un CSV come [questo](./atlante/at.csv) (che ho chiamato `at.csv`).<br>
 Una volta creato si dovrà aggiunge al progetto.
 
-Si potrà procedere quindi all'attivazione dell'atlante, iniziando dal creare un nuovo *layout* e poi attivando la **generazione** dell'atlante.<br>
+Si potrà iniziare dal creare un nuovo *layout* e poi attivare in questo la **generazione** dell'atlante.<br>
 Due i paramentri importanti in questa fase:
 
 1. quale *layer* sarà il layer che farà da `coverage`, ovvero quale comanderà il cambio pagina. Per questo progetto sarà `at`;
@@ -56,4 +56,4 @@ Si usa la funzione [`eval`](http://hfcqgis.opendatasicilia.it/it/latest/gr_funzi
 A questo punto si potrà esportare l'atlante in `PDF`, in `SVG` e in `PNG`.
 
 Ho creato una [copia del file progetto](./atlante/atlante.zip), con le risorse correlate, in modo che sia possibile testare il tutto in autonomia.<br>
-**NOTA BENE**: all'apertura del progetto il *layer* non sarà visualizzato, perché l'atlante non è attivo e quindi QGIS non sa quale sia la pagina e quindi il campo da usare per formattare il layer. Quindi una volta aperto il progetto, si dovrà aprire il layout e attivare l'anteprima dell'atlante.
+**NOTA BENE**: all'apertura del progetto il *layer* non sarà visualizzato, perché l'atlante non è attivo e quindi QGIS non sa quale sia la pagina e quindi il campo da usare per formattare il layer. Allora una volta aperto il progetto, si dovrà aprire il *layout* e attivare l'anteprima dell'atlante.
