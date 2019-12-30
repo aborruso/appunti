@@ -4,6 +4,7 @@
   - [GeoPandas](#geopandas)
   - [QGIS](#qgis)
   - [SQL](#sql)
+  - [SAGA](#saga)
 - [Per concludere](#per-concludere)
 
 # "Unire" i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper
@@ -146,6 +147,23 @@ VACUUM;
 ```
 
 In *output* ancora una volta 7 record.
+
+## SAGA
+
+*Sezione a cura di [Ludovico Frate](https://www.linkedin.com/in/ludovico-frate-a387aa57/) (grazie).*
+
+In SAGA GIS è possibile utilizzare il comando Polygon Self-Intersection per ottenere 7 geometrie (records) derivanti dall’unione del vettore originale.<br>
+I passaggi da eseguire sono:
+
+1. Importazione del file geojson utilizzando il comando Import Shapes (Tools -> Import/Export->GDAL/OGR->Import Shapes);
+
+![](imgs/saga_0.png)
+
+2. Eseguire l’unione eseguendo il comando Polygon Self-Intersection (Tools -> Shapes->Polygons->Polygons Self-Intersection) ed inserire in Polygons il geojson appena caricato, in identifier la colonna id.
+
+![](imgs/saga_01.png)
+
+In output i soliti 7 record.
 
 # Per concludere
 
