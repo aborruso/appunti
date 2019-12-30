@@ -157,11 +157,11 @@ I passaggi da eseguire sono:
 
 1. Importazione del file geojson utilizzando il comando Import Shapes (Tools -> Import/Export->GDAL/OGR->Import Shapes);
 
-![](imgs/saga_0.png)
+![](imgs/saga_01.png)
 
 2. Eseguire l’unione eseguendo il comando Polygon Self-Intersection (Tools -> Shapes->Polygons->Polygons Self-Intersection) ed inserire in Polygons il geojson appena caricato, in identifier la colonna id.
 
-![](imgs/saga_01.png)
+![](imgs/saga_0.png)
 
 In output i soliti 7 record.
 
