@@ -55,5 +55,5 @@ Si usa la funzione [`eval`](http://hfcqgis.opendatasicilia.it/it/latest/gr_funzi
 
 A questo punto si potrà esportare l'atlante in `PDF`, in `SVG` e in `PNG`.
 
-Ho creato una [copia del file progetto](./atlante/atlante.zip), con le risorse correlate, in modo che sia possibile testare il tutto in autonomia.<br>
+Ho creato una [copia del file progetto](./atlante/atlante.zip) con le risorse correlate (creato con QGIS 3.4), in modo che sia possibile testare il tutto in autonomia.<br>
 **NOTA BENE**: all'apertura del progetto il *layer* non sarà visualizzato, perché l'atlante non è attivo e quindi QGIS non sa quale sia la pagina e quindi il campo da usare per formattare il layer. Allora una volta aperto il progetto, si dovrà aprire il *layout* e attivare l'anteprima dell'atlante.
