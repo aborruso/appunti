@@ -5,6 +5,7 @@
   - [QGIS](#qgis)
   - [SQL](#sql)
   - [SAGA](#saga)
+  - [R](#r)
 - [Per concludere](#per-concludere)
 
 # "Unire" i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper
@@ -164,6 +165,23 @@ I passaggi da eseguire sono:
 ![](imgs/saga_0.png)
 
 In output i soliti 7 record.
+
+## R
+
+*Sezione a cura di [**Andrea Zedda**](https://www.facebook.com/andria.tzedda) (grazie).*
+
+In [**R**](https://www.r-project.org/), sfruttando le librerie `sf` e `dplyr`:
+
+```
+library(sf)
+library(dplyr)
+s <- st_read("inputLayer.geojson")
+s %>% st_intersection() %>%
+mutate(att=sapply(origins,
+function(x) paste0(as.character(s$id)[x], collapse = ",")))
+```
+
+In output quanto atteso.
 
 # Per concludere
 
