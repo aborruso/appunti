@@ -1,2 +1,3 @@
 *.qgs~
 tmp*
+output_00*.png
