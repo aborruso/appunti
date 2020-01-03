@@ -6,6 +6,7 @@
   - [SQL](#sql)
   - [SAGA](#saga)
   - [R](#r)
+  - [QGIS (seconda modalità)](#qgis-seconda-modalità)
 - [Per concludere](#per-concludere)
 
 # "Unire" i poligoni di un layer con grande semplicità: è un lavoro (soltanto?) per mapshaper
@@ -182,6 +183,39 @@ function(x) paste0(as.character(s$id)[x], collapse = ",")))
 ```
 
 In output quanto atteso.
+
+## QGIS (seconda modalità)
+
+L’esempio grafico da risolvere mostrato in quest'articolo, è una rappresentazione di quello che viene definito  nella teoria degli insiemi  un **diagramma di Venn**, ovvero un diagramma che mostra tutte le possibili relazioni logiche tra un numero finito di insiemi (le tre circonferenze), che vengono a costituire le regioni di interesse. Il metodo si basa proprio su questo concetto, individuazione delle parti di sovrapposizione di regioni e quindi l’insieme di punti in esse ricadenti, nonchè  le regioni di provenienza, che andranno a costituire 12 elementi  nella prima fase e 7 nella seconda.
+
+`Algoritmo Union —>     A-B-B,A-C-C,A-C,B-C,B,A`   (12 elementi)
+
+`Algoritmo Aggregate —> {A} - {B} - {B,A} - {C} - {C,A} - {C,B} - {C,B,A}`     ( 7 insiemi)
+
+Il metodo che si andrà ad esporre qui di seguito, è eseguibile completamente dall’interno di QGIS che prevede due fasi sequenziali con i seguenti geoprocessi.
+
+**Geoalgoritmo `Union`**
+
+![](imgs/View_Union.png)
+
+<u>Riprendendo la definizione :</u>
+Questo algoritmo controlla le sovrapposizioni tra le features all'interno del livello di Input (nell’esempio : polyover) e crea features separate per quelle parti sovrapposte e non sovrapposte.  Ovvero per le parti di aree sovrapposte, verranno create tante features quante sono le effettive parti di sovrapposizione.  La tabella degli attributi del **livello Union** che verrà generato, conterrà tutti i valori di attributo delle features  originali per le parti non sovrapposte e  valori di attributo per le parti  sovrapposte, in totale 12 elementi come indicato qui sopra. L’ algoritmo prevede inoltre la possibilità di utilizzare un livello di sovrapposizione e quindi tutte le sue derivazioni, ma che in questo caso non vengono prese in considerazione.
+
+![](imgs/Union_Algo.png)
+
+**Geoalgoritmo `Aggregate`**
+
+![](imgs/View_Aggregate.png)
+
+<u>Riprendendo la definizione :</u>
+Questo algoritmo a partire da un livello vettoriale in ingresso o tabella, permette l’ aggregazione di features tramite una espressione di raggruppamento ` Group By Expression` . Le features che secondo l’espressione restituiranno lo stesso valore, saranno aggregate. ***Questo rappresenta la chiave della risoluzione al quesito proposto, tramite QGIS***.
+L’algoritmo è molto ben strutturato e permette di effettuare tutta una serie di raggruppamenti mediante modalità parametriche diverse,  in questo esempio, viene utilizzata la seguente espressione di raggruppamento:
+
+`geom_to_wkt($geometry)`
+
+classica funzione utilizzabile nel `field calculator` che permette in modalità Well-Known-Text (WKT), di rappresentare la geometria . La risultante del geoprocesso, sarà che le geometrie riconosciute, saranno combinate in una geometria multipart per ogni  gruppo creato. I relativi attributi di output, verranno cosí calcolati sulla base di ciascuna aggregazione definita.
+
+![](imgs/Aggregate_Algo.png)
 
 # Per concludere
 
