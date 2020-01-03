@@ -1,3 +1,7 @@
+- [QGIS: generare un atlante basato su campi](#qgis-generare-un-atlante-basato-su-campi)
+  - [Come creare l'atlante](#come-creare-latlante)
+  - [Divertissement](#divertissement)
+
 # QGIS: generare un atlante basato su campi
 
 L'**atlante** di **QGIS** consente di creare in modo automatico delle pubblicazioni cartografiche multipagina. Proprio come i meravigliosi volumi del tempo della **scuola** (in cui ci si perdeva letteralmente dentro, specie "noi di quando non c'era l'internèt").
