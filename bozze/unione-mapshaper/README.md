@@ -186,6 +186,8 @@ In output quanto atteso.
 
 ## QGIS (seconda modalità)
 
+*Sezione a cura di [Ivano Giuliano](https://medium.com/@ivano.giuliano) (grazie).*
+
 L’esempio grafico da risolvere mostrato in quest'articolo, è una rappresentazione di quello che viene definito  nella teoria degli insiemi  un **diagramma di Venn**, ovvero un diagramma che mostra tutte le possibili relazioni logiche tra un numero finito di insiemi (le tre circonferenze), che vengono a costituire le regioni di interesse. Il metodo si basa proprio su questo concetto, individuazione delle parti di sovrapposizione di regioni e quindi l’insieme di punti in esse ricadenti, nonchè  le regioni di provenienza, che andranno a costituire 12 elementi  nella prima fase e 7 nella seconda.
 
 `Algoritmo Union —>     A-B-B,A-C-C,A-C,B-C,B,A`   (12 elementi)
